@@ -1,9 +1,4 @@
-# WARNING: Using Anaconda instead of pip is highly recommended, especially on
-# Windows or when using a GPU. Please see the installation instructions in
-# INSTALL.md
-
-
-##### Core scientific packages
+##### Core packages
 jupyter~=1.0.0
 matplotlib~=3.4.3
 numpy~=1.19.5
