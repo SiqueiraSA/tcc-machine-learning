@@ -2,7 +2,6 @@
 __pycache__/
 
 # folders
-images/
 
 # Jupyter Notebook
 .ipynb_checkpoints
