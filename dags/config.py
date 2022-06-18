@@ -1,6 +1,6 @@
 import datetime as dt
 
-DATE_START = dt.datetime(2000, 12, 31)
+DATE_START = dt.datetime(2005, 1, 1)
 DATE_END = dt.datetime(2021, 12, 31)
 
 COD_ACOES = {'RRRP3': '3R PETROLEUM',
@@ -69,8 +69,8 @@ COD_ACOES = {'RRRP3': '3R PETROLEUM',
              'MRVE3': 'MRV',
              'MULT3': 'MULTIPLAN',
              'PCAR3': 'P.ACUCAR-CBD',
-             'PETR3': 'PETROBRAS',
-             'PETR4': 'PETROBRAS',
+             'PETR3.SA': 'PETROBRAS',
+             'PETR4.SA': 'PETROBRAS',
              'PRIO3': 'PETRORIO',
              'PETZ3': 'PETZ',
              'POSI3': 'POSITIVO TEC',

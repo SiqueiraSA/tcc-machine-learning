@@ -14,14 +14,13 @@ def chose_path_to_work(PATH = ' '):
     return base_folder + "\\" + PATH
 
 def collect_raw_data(ticker):
-    start = config.DATE_START
-    end = config.DATE_END
     path = 'data\\raw'
-    df = yf.download(ticker, start = start, end = end)
+    df = yf.download(ticker, period = 'max').reset_index()
+    df = formating_raw_columns(df)
     ticker = str.lower(ticker)
-    df.to_csv(f"{chose_path_to_work(path)}\\{ticker}.csv")
+    df.to_csv(f"{chose_path_to_work(path)}\\{ticker}.csv", index = False)
 
-def formating_columns(df):
+def formating_raw_columns(df):
     df.columns =  map(str.lower, df.columns)
     df.rename(columns = {'adj close': 'adj_close'}, inplace = True)
     df['date'] = pd.to_datetime(df['date'])
