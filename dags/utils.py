@@ -80,13 +80,14 @@ def generate_mme_label(df, adj_upper, adj_lower, n_days):
 
     lower_name =  column_name + '_adj_' + str(int(adj_lower * 100))
     upper_name =  column_name + '_adj_' + str(int(adj_upper * 100))
-    prox_name =  'prox_' + column_name + '_adj_' + str(int(adj_upper * 100)) + '_' + str(int(adj_lower * 100))
-
+    
     df['mme_temp']= talib.EMA(df.close, timeperiod= n_days)
     df[upper_name] = df['mme_temp'] * adj_upper
     df[lower_name] = df['mme_temp'] * adj_lower
-    df[prox_name] = df[upper_name] - df[lower_name]
-    df.drop(columns = ['mme_temp'], inplace = True)
+    df['prox_upper'] = abs(df.close - df[upper_name]) 
+    df['prox_lower'] = abs(df.close - df[lower_name])
+    df['prox_mme_adj'] = df['prox_lower'] - df['prox_upper'] 
+    df.drop(columns = ['mme_temp', 'prox_upper', 'prox_lower'], inplace = True)
     return df
 
 def generate_bollinger_bands(df, n_days = 20, nbdevup=2, nbdevdn=2, matype=0, flag = True):
@@ -124,10 +125,10 @@ def generate_macd(df, fastperiod=12, slowperiod=26, signalperiod=9, flag = True)
     return df
 
 def generate_label(n_days, df):
-    target_name = 'target_' + str(n_days)
+    df = df.copy()
     n_days = n_days * -1
     df['close_shift'] = df['close'].shift(n_days)
-    df[target_name] = np.where((df['close_shift'] - df['close']) >= 0, 1, 0)
+    df['target'] = np.where((df['close_shift'] - df['close']) >= 0, 1, 0)
     df.dropna(inplace = True)
     df.drop(columns = ['close_shift'], inplace = True)
     return df
