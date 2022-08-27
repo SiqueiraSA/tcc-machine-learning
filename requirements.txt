@@ -20,6 +20,7 @@ plotly==5.8.0
 
 ### Machine Learning Packages
 scikit-learn==1.0.2
+shap==0.41.0
 
 ### Financial Packages
 yfinance==0.1.70
